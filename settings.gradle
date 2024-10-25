@@ -6,6 +6,6 @@
  */
 
 rootProject.name = 'AppMonteCarlo'
-include 'server'
+include 'client'
 include 'master'
 include 'worker'

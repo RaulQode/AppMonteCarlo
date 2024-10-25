@@ -1,6 +1,5 @@
 Manifest-Version: 1.0
 Main-Class: Worker
-Class-Path: file:/C:/Users/saral/.gradle/caches/modules-2/files-2.1/com.
- zeroc/ice/3.7.10/ca45473c5e197ace9510c4718fe2dfa4d3fdba29/ice-3.7.10.ja
- r
+Class-Path: file:/home/raulq/.gradle/caches/modules-2/files-2.1/com.zero
+ c/ice/3.7.10/ca45473c5e197ace9510c4718fe2dfa4d3fdba29/ice-3.7.10.jar
 

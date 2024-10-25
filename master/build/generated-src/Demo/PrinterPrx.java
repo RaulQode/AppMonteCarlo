@@ -17,39 +17,79 @@ package Demo;
 
 public interface PrinterPrx extends com.zeroc.Ice.ObjectPrx
 {
-    default void printString(String s)
+    default void collectResults(int pointsInCircle)
     {
-        printString(s, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+        collectResults(pointsInCircle, com.zeroc.Ice.ObjectPrx.noExplicitContext);
     }
 
-    default void printString(String s, java.util.Map<String, String> context)
+    default void collectResults(int pointsInCircle, java.util.Map<String, String> context)
     {
-        _iceI_printStringAsync(s, context, true).waitForResponse();
+        _iceI_collectResultsAsync(pointsInCircle, context, true).waitForResponse();
     }
 
-    default java.util.concurrent.CompletableFuture<Void> printStringAsync(String s)
+    default java.util.concurrent.CompletableFuture<Void> collectResultsAsync(int pointsInCircle)
     {
-        return _iceI_printStringAsync(s, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+        return _iceI_collectResultsAsync(pointsInCircle, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
     }
 
-    default java.util.concurrent.CompletableFuture<Void> printStringAsync(String s, java.util.Map<String, String> context)
+    default java.util.concurrent.CompletableFuture<Void> collectResultsAsync(int pointsInCircle, java.util.Map<String, String> context)
     {
-        return _iceI_printStringAsync(s, context, false);
+        return _iceI_collectResultsAsync(pointsInCircle, context, false);
     }
 
     /**
      * @hidden
-     * @param iceP_s -
+     * @param iceP_pointsInCircle -
      * @param context -
      * @param sync -
      * @return -
      **/
-    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_printStringAsync(String iceP_s, java.util.Map<String, String> context, boolean sync)
+    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_collectResultsAsync(int iceP_pointsInCircle, java.util.Map<String, String> context, boolean sync)
     {
-        com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "printString", null, sync, null);
+        com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "collectResults", null, sync, null);
         f.invoke(false, context, null, ostr -> {
-                     ostr.writeString(iceP_s);
+                     ostr.writeInt(iceP_pointsInCircle);
                  }, null);
+        return f;
+    }
+
+    default double calculatePi(int points)
+    {
+        return calculatePi(points, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+    }
+
+    default double calculatePi(int points, java.util.Map<String, String> context)
+    {
+        return _iceI_calculatePiAsync(points, context, true).waitForResponse();
+    }
+
+    default java.util.concurrent.CompletableFuture<java.lang.Double> calculatePiAsync(int points)
+    {
+        return _iceI_calculatePiAsync(points, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+    }
+
+    default java.util.concurrent.CompletableFuture<java.lang.Double> calculatePiAsync(int points, java.util.Map<String, String> context)
+    {
+        return _iceI_calculatePiAsync(points, context, false);
+    }
+
+    /**
+     * @hidden
+     * @param iceP_points -
+     * @param context -
+     * @param sync -
+     * @return -
+     **/
+    default com.zeroc.IceInternal.OutgoingAsync<java.lang.Double> _iceI_calculatePiAsync(int iceP_points, java.util.Map<String, String> context, boolean sync)
+    {
+        com.zeroc.IceInternal.OutgoingAsync<java.lang.Double> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "calculatePi", null, sync, null);
+        f.invoke(true, context, null, ostr -> {
+                     ostr.writeInt(iceP_points);
+                 }, istr -> {
+                     double ret;
+                     ret = istr.readDouble();
+                     return ret;
+                 });
         return f;
     }
 

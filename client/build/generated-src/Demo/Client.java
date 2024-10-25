@@ -15,16 +15,14 @@
 
 package Demo;
 
-public interface Printer extends com.zeroc.Ice.Object
+public interface Client extends com.zeroc.Ice.Object
 {
-    void collectResults(int pointsInCircle, com.zeroc.Ice.Current current);
-
-    double calculatePi(int points, com.zeroc.Ice.Current current);
+    double requestPiEstimation(int totalPoints, com.zeroc.Ice.Current current);
 
     /** @hidden */
     static final String[] _iceIds =
     {
-        "::Demo::Printer",
+        "::Demo::Client",
         "::Ice::Object"
     };
 
@@ -42,7 +40,7 @@ public interface Printer extends com.zeroc.Ice.Object
 
     static String ice_staticId()
     {
-        return "::Demo::Printer";
+        return "::Demo::Client";
     }
 
     /**
@@ -52,32 +50,14 @@ public interface Printer extends com.zeroc.Ice.Object
      * @param current -
      * @return -
     **/
-    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_collectResults(Printer obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
+    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_requestPiEstimation(Client obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
     {
         com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
         com.zeroc.Ice.InputStream istr = inS.startReadParams();
-        int iceP_pointsInCircle;
-        iceP_pointsInCircle = istr.readInt();
+        int iceP_totalPoints;
+        iceP_totalPoints = istr.readInt();
         inS.endReadParams();
-        obj.collectResults(iceP_pointsInCircle, current);
-        return inS.setResult(inS.writeEmptyParams());
-    }
-
-    /**
-     * @hidden
-     * @param obj -
-     * @param inS -
-     * @param current -
-     * @return -
-    **/
-    static java.util.concurrent.CompletionStage<com.zeroc.Ice.OutputStream> _iceD_calculatePi(Printer obj, final com.zeroc.IceInternal.Incoming inS, com.zeroc.Ice.Current current)
-    {
-        com.zeroc.Ice.Object._iceCheckMode(null, current.mode);
-        com.zeroc.Ice.InputStream istr = inS.startReadParams();
-        int iceP_points;
-        iceP_points = istr.readInt();
-        inS.endReadParams();
-        double ret = obj.calculatePi(iceP_points, current);
+        double ret = obj.requestPiEstimation(iceP_totalPoints, current);
         com.zeroc.Ice.OutputStream ostr = inS.startWriteParams();
         ostr.writeDouble(ret);
         inS.endWriteParams(ostr);
@@ -87,12 +67,11 @@ public interface Printer extends com.zeroc.Ice.Object
     /** @hidden */
     final static String[] _iceOps =
     {
-        "calculatePi",
-        "collectResults",
         "ice_id",
         "ice_ids",
         "ice_isA",
-        "ice_ping"
+        "ice_ping",
+        "requestPiEstimation"
     };
 
     /** @hidden */
@@ -110,27 +89,23 @@ public interface Printer extends com.zeroc.Ice.Object
         {
             case 0:
             {
-                return _iceD_calculatePi(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_id(this, in, current);
             }
             case 1:
             {
-                return _iceD_collectResults(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_ids(this, in, current);
             }
             case 2:
             {
-                return com.zeroc.Ice.Object._iceD_ice_id(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_isA(this, in, current);
             }
             case 3:
             {
-                return com.zeroc.Ice.Object._iceD_ice_ids(this, in, current);
+                return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
             }
             case 4:
             {
-                return com.zeroc.Ice.Object._iceD_ice_isA(this, in, current);
-            }
-            case 5:
-            {
-                return com.zeroc.Ice.Object._iceD_ice_ping(this, in, current);
+                return _iceD_requestPiEstimation(this, in, current);
             }
         }
 

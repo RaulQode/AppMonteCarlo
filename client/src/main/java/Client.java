@@ -10,6 +10,9 @@ public class Client
             {
             throw new Error("Invalid proxy");
             }
+            
+            System.out.println("pedropedorpedro");
+            
         }
     }
 }

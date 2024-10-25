@@ -7,6 +7,13 @@ module Demo {
         
         // Calcula y retorna el valor estimado de Pi
         double calculatePi(int points);
+
+        //Para probar conexione
+        void printString(string s);
+
+        // Registrar cuando un worker se conectar 
+        void registerWorker(string workerId);
+
     }
     
     // Interfaz para el Cliente

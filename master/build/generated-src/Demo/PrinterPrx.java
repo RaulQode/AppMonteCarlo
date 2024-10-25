@@ -93,6 +93,78 @@ public interface PrinterPrx extends com.zeroc.Ice.ObjectPrx
         return f;
     }
 
+    default void printString(String s)
+    {
+        printString(s, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+    }
+
+    default void printString(String s, java.util.Map<String, String> context)
+    {
+        _iceI_printStringAsync(s, context, true).waitForResponse();
+    }
+
+    default java.util.concurrent.CompletableFuture<Void> printStringAsync(String s)
+    {
+        return _iceI_printStringAsync(s, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+    }
+
+    default java.util.concurrent.CompletableFuture<Void> printStringAsync(String s, java.util.Map<String, String> context)
+    {
+        return _iceI_printStringAsync(s, context, false);
+    }
+
+    /**
+     * @hidden
+     * @param iceP_s -
+     * @param context -
+     * @param sync -
+     * @return -
+     **/
+    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_printStringAsync(String iceP_s, java.util.Map<String, String> context, boolean sync)
+    {
+        com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "printString", null, sync, null);
+        f.invoke(false, context, null, ostr -> {
+                     ostr.writeString(iceP_s);
+                 }, null);
+        return f;
+    }
+
+    default void registerWorker(String workerId)
+    {
+        registerWorker(workerId, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+    }
+
+    default void registerWorker(String workerId, java.util.Map<String, String> context)
+    {
+        _iceI_registerWorkerAsync(workerId, context, true).waitForResponse();
+    }
+
+    default java.util.concurrent.CompletableFuture<Void> registerWorkerAsync(String workerId)
+    {
+        return _iceI_registerWorkerAsync(workerId, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+    }
+
+    default java.util.concurrent.CompletableFuture<Void> registerWorkerAsync(String workerId, java.util.Map<String, String> context)
+    {
+        return _iceI_registerWorkerAsync(workerId, context, false);
+    }
+
+    /**
+     * @hidden
+     * @param iceP_workerId -
+     * @param context -
+     * @param sync -
+     * @return -
+     **/
+    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_registerWorkerAsync(String iceP_workerId, java.util.Map<String, String> context, boolean sync)
+    {
+        com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "registerWorker", null, sync, null);
+        f.invoke(false, context, null, ostr -> {
+                     ostr.writeString(iceP_workerId);
+                 }, null);
+        return f;
+    }
+
     /**
      * Contacts the remote server to verify that the object implements this type.
      * Raises a local exception if a communication error occurs.

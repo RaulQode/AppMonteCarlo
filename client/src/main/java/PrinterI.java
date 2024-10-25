@@ -1,6 +1,7 @@
 import com.zeroc.Ice.Current;
 import java.util.Scanner;
-public class PrinterI implements  Demo.Printer{
+
+public class PrinterI implements Demo.Printer{
 
     @Override
     public void sendValue(int value, com.zeroc.Ice.Current current) {
@@ -9,8 +10,7 @@ public class PrinterI implements  Demo.Printer{
 
     @Override
     public void collectResults(int pointsInCircle, Current current) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'collectResults'");
+        
     }
 
 
@@ -38,4 +38,5 @@ public class PrinterI implements  Demo.Printer{
         System.out.println("Valor ingresado por el cliente: " + estimation);
         return estimation;
     }
+    
 }

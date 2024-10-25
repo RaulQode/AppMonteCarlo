@@ -1,11 +1,27 @@
 import com.zeroc.Ice.Current;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Scanner;
+
 
 public class PrinterI implements Demo.Printer {
 
     // Estructura para almacenar los workers conectados
     private Set<String> connectedWorkers = new HashSet<>();
+
+
+    private int receivedValue; // Variable para almacenar el valor recibido
+
+    @Override
+    public void sendValue(int value, com.zeroc.Ice.Current current) {
+        receivedValue = value;
+        System.out.println("Valor recibido desde el cliente: " + receivedValue);
+    }
+
+    // Método para obtener el valor recibido, por si quieres acceder a él en `Master`
+    public int getReceivedValue() {
+        return receivedValue;
+    }
 
     // Método para registrar workers
     @Override
@@ -46,5 +62,15 @@ public class PrinterI implements Demo.Printer {
     public synchronized void removeWorker(String workerID) {
         connectedWorkers.remove(workerID);
         System.out.println("Worker desconectado: " + workerID);
+    }
+
+    @Override
+    public int requestPiEstimation(Current current){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingresa el valor para la estimación de Pi: ");
+        int estimation = scanner.nextInt();
+        scanner.close();
+        System.out.println("Valor ingresado por el cliente: " + estimation);
+        return estimation;
     }
 }

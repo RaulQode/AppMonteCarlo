@@ -14,11 +14,12 @@ module Demo {
         // Registrar cuando un worker se conectar 
         void registerWorker(string workerId);
 
+        // Envía una petición al maestro para calcular Pi
+        int requestPiEstimation();
+
+        // Enviar valor
+        void sendValue(int value);
+
     }
     
-    // Interfaz para el Cliente
-    interface Client {
-        // Envía una petición al maestro para calcular Pi
-        double requestPiEstimation(int totalPoints);
-    }
 }

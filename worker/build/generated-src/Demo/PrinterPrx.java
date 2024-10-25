@@ -165,6 +165,79 @@ public interface PrinterPrx extends com.zeroc.Ice.ObjectPrx
         return f;
     }
 
+    default int requestPiEstimation()
+    {
+        return requestPiEstimation(com.zeroc.Ice.ObjectPrx.noExplicitContext);
+    }
+
+    default int requestPiEstimation(java.util.Map<String, String> context)
+    {
+        return _iceI_requestPiEstimationAsync(context, true).waitForResponse();
+    }
+
+    default java.util.concurrent.CompletableFuture<java.lang.Integer> requestPiEstimationAsync()
+    {
+        return _iceI_requestPiEstimationAsync(com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+    }
+
+    default java.util.concurrent.CompletableFuture<java.lang.Integer> requestPiEstimationAsync(java.util.Map<String, String> context)
+    {
+        return _iceI_requestPiEstimationAsync(context, false);
+    }
+
+    /**
+     * @hidden
+     * @param context -
+     * @param sync -
+     * @return -
+     **/
+    default com.zeroc.IceInternal.OutgoingAsync<java.lang.Integer> _iceI_requestPiEstimationAsync(java.util.Map<String, String> context, boolean sync)
+    {
+        com.zeroc.IceInternal.OutgoingAsync<java.lang.Integer> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "requestPiEstimation", null, sync, null);
+        f.invoke(true, context, null, null, istr -> {
+                     int ret;
+                     ret = istr.readInt();
+                     return ret;
+                 });
+        return f;
+    }
+
+    default void sendValue(int value)
+    {
+        sendValue(value, com.zeroc.Ice.ObjectPrx.noExplicitContext);
+    }
+
+    default void sendValue(int value, java.util.Map<String, String> context)
+    {
+        _iceI_sendValueAsync(value, context, true).waitForResponse();
+    }
+
+    default java.util.concurrent.CompletableFuture<Void> sendValueAsync(int value)
+    {
+        return _iceI_sendValueAsync(value, com.zeroc.Ice.ObjectPrx.noExplicitContext, false);
+    }
+
+    default java.util.concurrent.CompletableFuture<Void> sendValueAsync(int value, java.util.Map<String, String> context)
+    {
+        return _iceI_sendValueAsync(value, context, false);
+    }
+
+    /**
+     * @hidden
+     * @param iceP_value -
+     * @param context -
+     * @param sync -
+     * @return -
+     **/
+    default com.zeroc.IceInternal.OutgoingAsync<Void> _iceI_sendValueAsync(int iceP_value, java.util.Map<String, String> context, boolean sync)
+    {
+        com.zeroc.IceInternal.OutgoingAsync<Void> f = new com.zeroc.IceInternal.OutgoingAsync<>(this, "sendValue", null, sync, null);
+        f.invoke(false, context, null, ostr -> {
+                     ostr.writeInt(iceP_value);
+                 }, null);
+        return f;
+    }
+
     /**
      * Contacts the remote server to verify that the object implements this type.
      * Raises a local exception if a communication error occurs.

@@ -1,8 +1,11 @@
 import com.zeroc.Ice.Current;
+import com.zeroc.Ice.Exception;
 
 import Demo.WorkerPrx;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class MasterI implements Demo.Master {
     private final List<WorkerPrx> connectedWorkers = new ArrayList<>();
@@ -27,14 +30,53 @@ public class MasterI implements Demo.Master {
 
     @Override
     public double estimatePi(int points, Current current) {
-        int[] dividePoints = divideWork(points);
-        int sumPoints = 0;
-
-        for (int i = 0; i < connectedWorkers.size(); i++) {
-            sumPoints += connectedWorkers.get(i).calculatePointsInCircle(dividePoints[i]);
+        if (connectedWorkers.isEmpty()) {
+            throw new RuntimeException("No hay workers conectados");
         }
 
-        return sumPoints * 4.0 / points;
+        int[] dividePoints = divideWork(points);
+        List<CompletableFuture<Integer>> futures = new ArrayList<>();
+
+        // Crear una tarea asíncrona para cada worker
+        for (int i = 0; i < connectedWorkers.size(); i++) {
+            final int workerIndex = i;
+            final WorkerPrx worker = connectedWorkers.get(i);
+            
+            CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+                try {
+                    System.out.println("Enviando " + dividePoints[workerIndex] + " puntos al worker " + workerIndex);
+                    return worker.calculatePointsInCircle(dividePoints[workerIndex]);
+                } catch (Exception e) {
+                    System.err.println("Error en worker " + workerIndex + ": " + e.getMessage());
+                    throw new RuntimeException(e);
+                }
+            });
+            
+            futures.add(future);
+        }
+
+        try {
+            CompletableFuture<Void> allFutures = CompletableFuture.allOf(
+                futures.toArray(new CompletableFuture[0])
+            );
+
+            allFutures.get();
+
+            int sumPoints = futures.stream()
+                .map(future -> {
+                    try {
+                        return future.get();
+                    } catch (InterruptedException | ExecutionException e) {
+                        throw new RuntimeException("Error al obtener resultado del worker", e);
+                    }
+                })
+                .mapToInt(Integer::intValue)
+                .sum();
+
+            return sumPoints * 4.0 / points;
+        } catch (InterruptedException | ExecutionException e) {
+            throw new RuntimeException("Error al procesar los resultados de los workers", e);
+        }
     }
 
     @Override

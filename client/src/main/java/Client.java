@@ -17,8 +17,11 @@ public class Client {
             System.out.print("Ingrese un número para enviar al servidor: ");
             int numero = scanner.nextInt();
             printer.sendValue(numero); // Método que envía el valor al servidor
+            long startTime = System.currentTimeMillis();
             double pi = printer.estimatePi(numero);
             System.out.println("Valor estimado de pi: " + pi);
+            long endTime = System.currentTimeMillis();
+            System.out.println("Tiempo total: " + (endTime - startTime) + "ms");
 
             // Mantener el cliente activo
             while(pi == 0){

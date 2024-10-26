@@ -1,14 +1,10 @@
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Master
-{
-    public static void main(String[] args)
-    {
-        // Crear un pool de hilos para manejar las conexiones de los workers
+public class Master {
+    public static void main(String[] args) {
         ExecutorService executor = Executors.newFixedThreadPool(10);
 
-        // Inicializar el comunicador de ICE
         try (com.zeroc.Ice.Communicator communicator = com.zeroc.Ice.Util.initialize(args)) {
 
             // Crear el adaptador para el servidor
@@ -16,19 +12,27 @@ public class Master
                 communicator.createObjectAdapterWithEndpoints("SimplePrinterAdapter", "default -p 10000");
 
             // Instancia del servicio PrinterI que manejará a los workers conectados
-            PrinterI printerServant = new PrinterI();
+            MasterI printerServant = new MasterI();
 
             // Asociar el objeto con el adaptador
             adapter.add(printerServant, com.zeroc.Ice.Util.stringToIdentity("SimplePrinter"));
 
-            // Activar el adaptador para que empiece a escuchar conexiones
+            // Activar el adaptador
             adapter.activate();
+            System.out.println("Master listo y escuchando en el puerto 10000...");
 
-            System.out.println(printerServant.getWorkerCount());
+            executor.submit(() -> {
+                while (true) {
+                    try {
+                        Thread.sleep(5000); // Esperar 5 segundos
+                        int valorRecibido = printerServant.getReceivedValue();
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                        break; // Salir del bucle si el hilo es interrumpido
+                    }
+                }
+            });
 
-            // Loop principal del servidor: escucha y maneja workers
-            // Aquí podrías tener lógica adicional para monitorear workers
-            // mientras el servidor está corriendo
             communicator.waitForShutdown();
 
         } catch (Exception e) {

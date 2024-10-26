@@ -11,7 +11,7 @@ public class Worker {
 
             // Conectarse al servidor (Master) a través del proxy
             com.zeroc.Ice.ObjectPrx base = communicator.stringToProxy("SimplePrinter:default -p 10000");
-            Demo.PrinterPrx printer = Demo.PrinterPrx.checkedCast(base);
+            Demo.MasterPrx printer = Demo.MasterPrx.checkedCast(base);
             if (printer == null) {
                 throw new Error("Invalid proxy");
             }

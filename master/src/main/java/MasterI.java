@@ -2,24 +2,31 @@ import com.zeroc.Ice.Current;
 import java.util.HashSet;
 import java.util.Set;
 
-public class PrinterI implements Demo.Printer {
+public class MasterI implements Demo.Master {
 
     // Estructura para almacenar los workers conectados
     private Set<String> connectedWorkers = new HashSet<>();
+    private int receivedValue; // Variable para almacenar el valor recibido
 
     // Método para registrar workers
     @Override
-    public synchronized void registerWorker(String workerID, Current current) {
-        if (!connectedWorkers.contains(workerID)) {
-            connectedWorkers.add(workerID);
-            System.out.println("Worker registrado: " + workerID);
+    public synchronized void registerWorker(String workerId, Current current) {
+        if (!connectedWorkers.contains(workerId)) {
+            connectedWorkers.add(workerId);
+            System.out.println("Worker registrado: " + workerId);
             System.out.println("Número total de workers conectados: " + connectedWorkers.size());
         }
     }
 
+    @Override
+    public void sendValue(int value, Current current) {
+        receivedValue = value;
+        System.out.println("Valor recibido desde el cliente: " + receivedValue);
+    }
+
     // Método para calcular Pi
     @Override
-    public double calculatePi(int points, Current current) {
+    public double estimatePi(int points, Current current) {
         // Dividir el trabajo para los workers conectados
         divideWork(points);
         
@@ -32,12 +39,6 @@ public class PrinterI implements Demo.Printer {
         return pi;
     }
 
-    // Método para manejar los resultados
-    @Override
-    public void collectResults(int pointsInCircle, Current current) {
-        // Lógica para recolectar resultados de los workers
-    }
-
     // Método para imprimir un string
     @Override
     public void printString(String s, Current current) {
@@ -47,6 +48,10 @@ public class PrinterI implements Demo.Printer {
     // Método para contar cuántos workers están conectados
     public synchronized int getWorkerCount() {
         return connectedWorkers.size();
+    }
+
+    public int getReceivedValue() {
+        return receivedValue;
     }
 
     // Método para dividir el trabajo de los workers conectados y enviarles puntos a calcular
@@ -62,11 +67,7 @@ public class PrinterI implements Demo.Printer {
                 pointsToSend++;
                 remainingPoints--;
             }
-
-            
-
         }
-
         return totalPoints;
     }
 

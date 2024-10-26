@@ -27,16 +27,16 @@ public class MasterI implements Demo.Master {
     // Método para calcular Pi
     @Override
     public double estimatePi(int points, Current current) {
-        // Dividir el trabajo para los workers conectados
-        divideWork(points);
+        // // Dividir el trabajo para los workers conectados
+        // divideWork(points);
         
-        // Recolectar la información de los workers -> Puntos en el circulo
-        int sumPoints = 0; // Suma de los puntos en el círculo
+        // // Recolectar la información de los workers -> Puntos en el circulo
+        // int sumPoints = 0; // Suma de los puntos en el círculo
         
-        // Calcular Pi
-        double pi = sumPoints * 4.0 / points; 
+        // // Calcular Pi
+        // double pi = sumPoints * 4.0 / points; 
         
-        return pi;
+        return points + 10;
     }
 
     // Método para imprimir un string

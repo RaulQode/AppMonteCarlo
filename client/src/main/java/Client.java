@@ -12,25 +12,13 @@ public class Client {
                 throw new Error("Invalid proxy");
             }
 
-            ExecutorService executor = Executors.newFixedThreadPool(2);
+            // ExecutorService executor = Executors.newFixedThreadPool(2);
 
-            // Hilo para enviar datos al servidor
-            executor.submit(() -> {
-                Scanner scanner = new Scanner(System.in);
-                while (true) {
-                    System.out.print("Ingrese un número para enviar al servidor: ");
-                    int numero = scanner.nextInt();
-                    printer.sendValue(numero); // Método que envía el valor al servidor
-                    System.out.println("Número enviado: " + numero);
-                }
-            });
-            
-            // Aqui recibe el cliente la respuesta del valor de pi
-            executor.submit(() -> {
-                while (true) {
-                
-                }
-            });
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Ingrese un número para enviar al servidor: ");
+            int numero = scanner.nextInt();
+            printer.sendValue(numero); // Método que envía el valor al servidor
+            System.out.println("Valor estimado de pi: " + printer.estimatePi(numero));
 
             // Mantener el cliente activo
             communicator.waitForShutdown();

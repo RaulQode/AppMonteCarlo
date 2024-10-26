@@ -1,20 +1,21 @@
 import com.zeroc.Ice.Current;
-import java.util.HashSet;
-import java.util.Set;
+
+import Demo.WorkerPrx;
+import java.util.List;
+import java.util.ArrayList;
 
 public class MasterI implements Demo.Master {
+    private final List<WorkerPrx> connectedWorkers = new ArrayList<>();
+    private int receivedValue;
 
-    // Estructura para almacenar los workers conectados
-    private Set<String> connectedWorkers = new HashSet<>();
-    private int receivedValue; // Variable para almacenar el valor recibido
-
-    // Método para registrar workers
-    @Override
-    public synchronized void registerWorker(String workerId, Current current) {
-        if (!connectedWorkers.contains(workerId)) {
-            connectedWorkers.add(workerId);
-            System.out.println("Worker registrado: " + workerId);
+    public synchronized void addWorker(WorkerPrx worker, Current current) {
+        WorkerPrx workerPrx = WorkerPrx.checkedCast(worker);
+        if (workerPrx != null && !connectedWorkers.contains(workerPrx)) {
+            connectedWorkers.add(workerPrx);
+            System.out.println("Worker registrado: " + workerPrx);
             System.out.println("Número total de workers conectados: " + connectedWorkers.size());
+        } else {
+            System.out.println("Error al registrar el worker: " + worker);
         }
     }
 
@@ -24,56 +25,32 @@ public class MasterI implements Demo.Master {
         System.out.println("Valor recibido desde el cliente: " + receivedValue);
     }
 
-    // Método para calcular Pi
     @Override
     public double estimatePi(int points, Current current) {
-        // // Dividir el trabajo para los workers conectados
-        // divideWork(points);
-        
-        // // Recolectar la información de los workers -> Puntos en el circulo
-        // int sumPoints = 0; // Suma de los puntos en el círculo
-        
-        // // Calcular Pi
-        // double pi = sumPoints * 4.0 / points; 
-        
-        return points + 10;
+        int[] dividePoints = divideWork(points);
+        int sumPoints = 0;
+
+        for (int i = 0; i < connectedWorkers.size(); i++) {
+            sumPoints += connectedWorkers.get(i).calculatePointsInCircle(dividePoints[i]);
+        }
+
+        return sumPoints * 4.0 / points;
     }
 
-    // Método para imprimir un string
     @Override
     public void printString(String s, Current current) {
         System.out.println(s);
     }
 
-    // Método para contar cuántos workers están conectados
-    public synchronized int getWorkerCount() {
-        return connectedWorkers.size();
-    }
-
-    public int getReceivedValue() {
-        return receivedValue;
-    }
-
-    // Método para dividir el trabajo de los workers conectados y enviarles puntos a calcular
     public synchronized int[] divideWork(int points) {
-        int workers = getWorkerCount();
+        int workers = connectedWorkers.size();
         int pointsPerWorker = points / workers;
         int remainingPoints = points % workers;
         int[] totalPoints = new int[workers];
 
-        for (String workerID : connectedWorkers) {
-            int pointsToSend = pointsPerWorker;
-            if (remainingPoints > 0) {
-                pointsToSend++;
-                remainingPoints--;
-            }
+        for (int i = 0; i < workers; i++) {
+            totalPoints[i] = pointsPerWorker + (remainingPoints-- > 0 ? 1 : 0);
         }
         return totalPoints;
-    }
-
-    // Método opcional para eliminar workers si se desconectan
-    public synchronized void removeWorker(String workerID) {
-        connectedWorkers.remove(workerID);
-        System.out.println("Worker desconectado: " + workerID);
     }
 }

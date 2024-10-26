@@ -6,7 +6,7 @@ public class Client {
     public static void main(String[] args) {
         try (com.zeroc.Ice.Communicator communicator = com.zeroc.Ice.Util.initialize(args)) {
             // Conectar con el servidor
-            com.zeroc.Ice.ObjectPrx base = communicator.stringToProxy("SimplePrinter:default -p 10000");
+            com.zeroc.Ice.ObjectPrx base = communicator.stringToProxy("Master:default -p 10000");
             Demo.MasterPrx printer = Demo.MasterPrx.checkedCast(base);
             if (printer == null) {
                 throw new Error("Invalid proxy");

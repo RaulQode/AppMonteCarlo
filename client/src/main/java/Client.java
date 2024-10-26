@@ -13,15 +13,19 @@ public class Client {
             }
 
             // ExecutorService executor = Executors.newFixedThreadPool(2);
-
             Scanner scanner = new Scanner(System.in);
             System.out.print("Ingrese un número para enviar al servidor: ");
             int numero = scanner.nextInt();
             printer.sendValue(numero); // Método que envía el valor al servidor
-            System.out.println("Valor estimado de pi: " + printer.estimatePi(numero));
+            double pi = printer.estimatePi(numero);
+            System.out.println("Valor estimado de pi: " + pi);
 
             // Mantener el cliente activo
-            communicator.waitForShutdown();
+            while(pi == 0){
+                communicator.waitForShutdown();
+            }
+
+            communicator.close();
 
         } catch (Exception e) {
             e.printStackTrace();

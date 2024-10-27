@@ -13,19 +13,27 @@ public class Client {
             }
 
             // ExecutorService executor = Executors.newFixedThreadPool(2);
-            Scanner scanner = new Scanner(System.in);
-            System.out.print("Ingrese un número para enviar al servidor: ");
-            int numero = scanner.nextInt();
-            printer.sendValue(numero); // Método que envía el valor al servidor
-            long startTime = System.currentTimeMillis();
-            double pi = printer.estimatePi(numero);
-            System.out.println("Valor estimado de pi: " + pi);
-            long endTime = System.currentTimeMillis();
-            System.out.println("Tiempo total: " + (endTime - startTime) + "ms");
+            boolean coninuity = true;
+            while (coninuity) {
 
-            // Mantener el cliente activo
-            while(pi == 0){
-                communicator.waitForShutdown();
+                Scanner scanner = new Scanner(System.in);
+                System.out.print("Ingrese un número de puntos para enviar al servidor: ");
+                int numero = scanner.nextInt();
+                scanner.nextLine();
+                printer.sendValue(numero); // Método que envía el valor al servidor
+                long startTime = System.currentTimeMillis();
+                double pi = printer.estimatePi(numero);
+                System.out.println("Valor estimado de pi: " + pi);
+                long endTime = System.currentTimeMillis();
+                System.out.println("Tiempo total: " + (endTime - startTime) + "ms");
+                System.out.print("Desea continuar? (s/n): ");
+                String continuar = scanner.nextLine();
+                if (continuar.equals("n")) {
+                    coninuity = false;
+                }
+                if (pi == 0) {
+                    communicator.waitForShutdown();
+                }
             }
 
             communicator.close();

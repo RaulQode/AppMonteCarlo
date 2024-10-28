@@ -1,4 +1,5 @@
-Begin - 100 points
+Prueba 1 - 2 workers
+Begin - 100 points 
 Valor estimado de pi: 3.4
 Tiempo total: 176ms
 Valor estimado de pi: 3.4
@@ -48,6 +49,7 @@ Tiempo total: 3371ms
 Valor estimado de pi: 3.1416994
 Tiempo total: 3344ms
 
+Prueba 2 - 4 workers
 Begin - 100 points
 Valor estimado de pi: 3.16
 Tiempo total: 30ms
@@ -98,6 +100,7 @@ Tiempo total: 2434ms
 Valor estimado de pi: 3.14165756
 Tiempo total: 2411ms
 
+Prueba 3 - 6 workers
 Begin - 100 points
 Valor estimado de pi: 3.28
 Tiempo total: 44ms
@@ -148,6 +151,7 @@ Tiempo total: 2380ms
 Valor estimado de pi: 3.14160884
 Tiempo total: 2332ms
 
+Prueba 4 - 8 workers
 Begin - 100 points
 Valor estimado de pi: 3.04
 Tiempo total: 34ms
@@ -198,6 +202,7 @@ Tiempo total: 2289ms
 Valor estimado de pi: 3.14162852
 Tiempo total: 2316ms
 
+Prueba 5 - 10 workers
 Begin - 100 points
 Valor estimado de pi: 3.2
 Tiempo total: 34ms

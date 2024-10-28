@@ -1,0 +1,251 @@
+Begin - 100 points
+Valor estimado de pi: 3.4
+Tiempo total: 176ms
+Valor estimado de pi: 3.4
+Tiempo total: 10ms
+Valor estimado de pi: 3.16
+Tiempo total: 10ms
+Valor estimado de pi: 3.12
+Tiempo total: 10ms
+
+Begin - 1000 points
+Valor estimado de pi: 3.212
+Tiempo total: 9ms
+Valor estimado de pi: 3.124
+Tiempo total: 9ms
+Valor estimado de pi: 3.164
+Tiempo total: 29ms
+Valor estimado de pi: 3.18
+Tiempo total: 11ms
+
+Begin - 100000 points
+Valor estimado de pi: 3.14404
+Tiempo total: 39ms
+Valor estimado de pi: 3.14228
+Tiempo total: 23ms
+Valor estimado de pi: 3.1414
+Tiempo total: 21ms
+Valor estimado de pi: 3.14028
+Tiempo total: 11ms
+
+Begin - 1000000 points
+Valor estimado de pi: 3.141464
+Tiempo total: 65ms
+Valor estimado de pi: 3.142384
+Tiempo total: 42ms
+Valor estimado de pi: 3.14116
+Tiempo total: 36ms
+Valor estimado de pi: 3.141956
+Tiempo total: 37ms
+
+Begin - 100000000 points
+Valor estimado de pi: 3.14141824
+Tiempo total: 3557ms
+Valor estimado de pi: 3.1415938
+Tiempo total: 3374ms
+Valor estimado de pi: 3.14169928
+Tiempo total: 3371ms
+Valor estimado de pi: 3.1416994
+Tiempo total: 3344ms
+
+Begin - 100 points
+Valor estimado de pi: 3.16
+Tiempo total: 30ms
+Valor estimado de pi: 3.12
+Tiempo total: 11ms
+Valor estimado de pi: 3.24
+Tiempo total: 17ms
+Valor estimado de pi: 3.32
+Tiempo total: 10ms
+
+Begin - 1000 points
+Valor estimado de pi: 3.06
+Tiempo total: 50ms
+Valor estimado de pi: 3.104
+Tiempo total: 19ms
+Valor estimado de pi: 3.112
+Tiempo total: 22ms
+Valor estimado de pi: 3.072
+Tiempo total: 17ms
+
+Begin - 100000 points
+Valor estimado de pi: 3.14676
+Tiempo total: 27ms
+Valor estimado de pi: 3.14268
+Tiempo total: 24ms
+Valor estimado de pi: 3.15544
+Tiempo total: 21ms
+Valor estimado de pi: 3.14284
+Tiempo total: 15ms
+
+Begin - 1000000 points
+Valor estimado de pi: 3.139604
+Tiempo total: 116ms
+Valor estimado de pi: 3.14114
+Tiempo total: 51ms
+Valor estimado de pi: 3.142024
+Tiempo total: 66ms
+Valor estimado de pi: 3.141276
+Tiempo total: 77ms
+
+Begin - 100000000 points
+Valor estimado de pi: 3.1416172
+Tiempo total: 3825ms
+Valor estimado de pi: 3.1416344
+Tiempo total: 2729ms
+Valor estimado de pi: 3.14174624
+Tiempo total: 2434ms
+Valor estimado de pi: 3.14165756
+Tiempo total: 2411ms
+
+Begin - 100 points
+Valor estimado de pi: 3.28
+Tiempo total: 44ms
+Valor estimado de pi: 3.08
+Tiempo total: 25ms
+Valor estimado de pi: 3.0
+Tiempo total: 16ms
+Valor estimado de pi: 3.24
+Tiempo total: 15ms
+
+Begin - 1000 points
+Valor estimado de pi: 3.076
+Tiempo total: 102ms
+Valor estimado de pi: 3.112
+Tiempo total: 41ms
+Valor estimado de pi: 3.136
+Tiempo total: 252ms
+Valor estimado de pi: 3.168
+Tiempo total: 34ms
+
+Begin - 100000 points
+Valor estimado de pi: 3.14676
+Tiempo total: 370ms
+Valor estimado de pi: 3.14468
+Tiempo total: 108ms
+Valor estimado de pi: 3.13364
+Tiempo total: 287ms
+Valor estimado de pi: 3.13964
+Tiempo total: 43ms
+
+Begin - 1000000 points
+Valor estimado de pi: 3.141748
+Tiempo total: 81ms
+Valor estimado de pi: 3.13906
+Tiempo total: 33ms
+Valor estimado de pi: 3.141884
+Tiempo total: 56ms
+Valor estimado de pi: 3.139132
+Tiempo total: 39ms
+
+Begin - 100000000 points
+Valor estimado de pi: 3.1416444
+Tiempo total: 2361ms
+Valor estimado de pi: 3.14132824
+Tiempo total: 2497ms
+Valor estimado de pi: 3.14172428
+Tiempo total: 2380ms
+Valor estimado de pi: 3.14160884
+Tiempo total: 2332ms
+
+Begin - 100 points
+Valor estimado de pi: 3.04
+Tiempo total: 34ms
+Valor estimado de pi: 3.04
+Tiempo total: 32ms
+Valor estimado de pi: 3.16
+Tiempo total: 14ms
+Valor estimado de pi: 3.28
+Tiempo total: 24ms
+
+Begin - 1000 points
+Valor estimado de pi: 3.176
+Tiempo total: 24ms
+Valor estimado de pi: 3.1
+Tiempo total: 17ms
+Valor estimado de pi: 3.08
+Tiempo total: 18ms
+Valor estimado de pi: 3.072
+Tiempo total: 21ms
+
+Begin - 100000 points
+Valor estimado de pi: 3.14316
+Tiempo total: 54ms
+Valor estimado de pi: 3.13592
+Tiempo total: 24ms
+Valor estimado de pi: 3.14684
+Tiempo total: 33ms
+Valor estimado de pi: 3.14696
+Tiempo total: 28ms
+
+Begin - 1000000 points
+Valor estimado de pi: 3.140224
+Tiempo total: 69ms
+Valor estimado de pi: 3.139664
+Tiempo total: 85ms
+Valor estimado de pi: 3.142408
+Tiempo total: 54ms
+Valor estimado de pi: 3.141996
+Tiempo total: 49ms
+
+Begin - 100000000 points
+Valor estimado de pi: 3.14156392
+Tiempo total: 2503ms
+Valor estimado de pi: 3.14145452
+Tiempo total: 2277ms
+Valor estimado de pi: 3.14148504
+Tiempo total: 2289ms
+Valor estimado de pi: 3.14162852
+Tiempo total: 2316ms
+
+Begin - 100 points
+Valor estimado de pi: 3.2
+Tiempo total: 34ms
+Valor estimado de pi: 3.28
+Tiempo total: 24ms
+Valor estimado de pi: 3.04
+Tiempo total: 12ms
+Valor estimado de pi: 3.24
+Tiempo total: 20ms
+
+Begin - 1000 points
+Valor estimado de pi: 3.136
+Tiempo total: 43ms
+Valor estimado de pi: 3.18
+Tiempo total: 20ms
+Valor estimado de pi: 3.14
+Tiempo total: 19ms
+Valor estimado de pi: 3.028
+Tiempo total: 30ms
+
+Begin - 100000 points
+Valor estimado de pi: 3.14648
+Tiempo total: 64ms
+Valor estimado de pi: 3.14036
+Tiempo total: 34ms
+Valor estimado de pi: 3.14496
+Tiempo total: 22ms
+Valor estimado de pi: 3.14652
+Tiempo total: 25ms
+
+Begin - 1000000 points
+Valor estimado de pi: 3.1402
+Tiempo total: 93ms
+Valor estimado de pi: 3.139428
+Tiempo total: 86ms
+Valor estimado de pi: 3.141908
+Tiempo total: 54ms
+Valor estimado de pi: 3.142944
+Tiempo total: 43ms
+
+Begin - 100000000 points
+Valor estimado de pi: 3.14172032
+Tiempo total: 2740ms
+Valor estimado de pi: 3.14157524
+Tiempo total: 2301ms
+Valor estimado de pi: 3.14162224
+Tiempo total: 2290ms
+Valor estimado de pi: 3.14174412
+Tiempo total: 2308ms
+
+

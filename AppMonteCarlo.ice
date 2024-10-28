@@ -1,24 +1,24 @@
 module Demo {
+    interface Worker {
+        // Método que calcula los puntos en el círculo y retorna el conteo
+        int calculatePointsInCircle(int points);
+    }
 
-    // Interfaz para calcular PI
-    interface Printer {        
-        // Recoge los resultados reportados por los trabajadores
-        void collectResults(int pointsInCircle);
-        
-        // Calcula y retorna el valor estimado de Pi
-        double calculatePi(int points);
+    interface Master {
+        // Calcula y retorna el valor estimado de Pi basado en puntos proporcionados
+        double estimatePi(int points);
 
-        //Para probar conexione
+        // Prueba de conexión, imprime una cadena recibida
         void printString(string s);
 
-        // Registrar cuando un worker se conectar 
-        void registerWorker(string workerId);
+        // Método para enviar un valor
+        void sendValue(int value);
 
+        void addWorker(Worker* worker);
     }
-    
-    // Interfaz para el Cliente
+
     interface Client {
-        // Envía una petición al maestro para calcular Pi
-        double requestPiEstimation(int totalPoints);
+        // Envía una petición al maestro para calcular Pi con el total de puntos especificado
+        void requestPiEstimation(int totalPoints);
     }
 }

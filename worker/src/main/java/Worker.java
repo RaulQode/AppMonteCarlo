@@ -1,49 +1,29 @@
-import java.util.Scanner;
+import com.zeroc.Ice.Current;
+import Demo.MasterPrx;
+import Demo.WorkerPrx;
 
 public class Worker {
 
-    public static void main(String[] args)
-    {
-        // Inicializa el worker ID (puede ser dinámico o estático)
-        String workerID = "Worker" + java.util.UUID.randomUUID().toString(); // Worker con ID único
+    public static void main(String[] args) {
+        try (com.zeroc.Ice.Communicator communicator = com.zeroc.Ice.Util.initialize(args, "config.cfg")) {
+            com.zeroc.Ice.ObjectAdapter adapter = communicator.createObjectAdapter("WorkerAdapter");
+            WorkerI worker = new WorkerI();
+            com.zeroc.Ice.ObjectPrx proxy = adapter.add(worker, com.zeroc.Ice.Util.stringToIdentity("Worker" + java.util.UUID.randomUUID()));
+            WorkerPrx workerPrx = WorkerPrx.checkedCast(proxy);
+            adapter.activate();
+            System.out.println("Worker activado y listo para recibir tareas.");
 
-        try (com.zeroc.Ice.Communicator communicator = com.zeroc.Ice.Util.initialize(args)) {
-
-            // Conectarse al servidor (Master) a través del proxy
-            com.zeroc.Ice.ObjectPrx base = communicator.stringToProxy("SimplePrinter:default -p 10000");
-            Demo.PrinterPrx printer = Demo.PrinterPrx.checkedCast(base);
-            if (printer == null) {
-                throw new Error("Invalid proxy");
+            MasterPrx master = MasterPrx.checkedCast(communicator.stringToProxy("Master:default -p 10000"));
+            if (master == null) {
+                System.err.println("No se pudo conectar con el master.");
+                return;
             }
 
-            // Enviar un mensaje de registro al servidor (Master)
-            printer.registerWorker(workerID);  // Registro del worker con su ID
-            System.out.println("Worker registrado con ID: " + workerID);
+            master.addWorker(workerPrx);
 
-            // Crear un Scanner para leer mensajes del usuario
-            Scanner scanner = new Scanner(System.in);
-            String message = "";
-
-            // Mantener la conexión abierta y permitir que el worker envíe múltiples mensajes
-            while (true) {
-                System.out.print("Escribe un mensaje ('exit' para salir): ");
-                message = scanner.nextLine();  // Leer el mensaje del usuario
-
-                // Si el usuario escribe 'exit', terminar la conexión
-                if (message.equalsIgnoreCase("exit")) {
-                    System.out.println("Desconectando...");
-                    break;
-                }
-
-                // Enviar el mensaje al servidor (Master) usando printString
-                printer.printString(workerID + ": " + message);
-            }
-
-            // Al salir del bucle, el worker se desconecta
-            System.out.println("Worker desconectado.");
-
+            communicator.waitForShutdown();
         } catch (Exception e) {
-            System.out.println("Error al conectar con el servidor: " + e.getMessage());
+            System.err.println("Error al conectar con el servidor: " + e.getMessage());
             e.printStackTrace();
         }
     }

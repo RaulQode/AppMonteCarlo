@@ -1,9 +1,9 @@
 # AppMonteCarlo
-by:
+**By:**
 
-Raul Quigua
-Mateo Rubio
-Juan Camilo Tobar
+Raul Quigua,
+Mateo Rubio,
+Juan Camilo Tobar and
 Sara Lucia Diaz Puerta
 
 
